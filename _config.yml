@@ -1,0 +1,85 @@
+# Site settings
+title: BusinessToolsInsider
+description: "Independent reviews and comparisons of business software solutions. Find the perfect tools for your business needs with our comprehensive analysis and expert recommendations."
+url: "https://businesstoolsinsider.github.io"
+baseurl: ""
+
+# Author settings
+author:
+  name: "Business Software Experts"
+  email: "contact@businesstoolsinsider.com"
+
+# SEO settings
+lang: en_US
+timezone: UTC
+google_analytics: # Add GA tracking ID when ready
+google_adsense: # Add AdSense publisher ID when ready
+
+# Social profiles
+social:
+  twitter: businesstoolsins
+  linkedin: business-tools-insider
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+
+# Pagination
+paginate: 10
+paginate_path: "/page:num/"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+
+# Navigation
+nav_links:
+  - title: "Home"
+    url: "/"
+  - title: "CRM Software"
+    url: "/crm-software/"
+  - title: "Project Management"
+    url: "/project-management/"
+  - title: "Accounting Software"
+    url: "/accounting-software/"
+  - title: "Marketing Tools"
+    url: "/marketing-tools/"
+  - title: "HR Software"
+    url: "/hr-software/"
+  - title: "Reviews"
+    url: "/reviews/"
+  - title: "Best Of"
+    url: "/best-of/"
+
+# High-CPC Software Categories
+categories:
+  - name: "CRM Software"
+    slug: "crm-software"
+    description: "Customer Relationship Management solutions for businesses"
+  - name: "Project Management"
+    slug: "project-management" 
+    description: "Tools to manage projects, teams, and workflows"
+  - name: "Accounting Software"
+    slug: "accounting-software"
+    description: "Financial management and bookkeeping solutions"
+  - name: "Marketing Automation"
+    slug: "marketing-tools"
+    description: "Marketing automation and campaign management tools"
+  - name: "HR Software"
+    slug: "hr-software"
+    description: "Human resources management systems"
+  - name: "Business Intelligence"
+    slug: "business-intelligence"
+    description: "Data analytics and reporting solutions"

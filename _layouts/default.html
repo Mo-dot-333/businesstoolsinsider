@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  {% seo %}
+  
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  {% if site.google_analytics %}
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site.google_analytics }}');
+  </script>
+  {% endif %}
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="{{ '/' | relative_url }}">
+            <i class="fas fa-chart-line"></i>
+            <span>{{ site.title }}</span>
+          </a>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            {% for link in site.nav_links %}
+            <li><a href="{{ link.url | relative_url }}" {% if page.url == link.url %}class="active"{% endif %}>{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+        <div class="mobile-menu-toggle">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>{{ site.title }}</h4>
+          <p>{{ site.description }}</p>
+        </div>
+        <div class="footer-section">
+          <h4>Categories</h4>
+          <ul>
+            {% for category in site.categories %}
+            <li><a href="{{ '/' | append: category.slug | append: '/' | relative_url }}">{{ category.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+            <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+            <li><a href="{{ '/privacy/' | relative_url }}">Privacy Policy</a></li>
+            <li><a href="{{ '/terms/' | relative_url }}">Terms of Use</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            {% if site.social.twitter %}
+            <a href="https://twitter.com/{{ site.social.twitter }}"><i class="fab fa-twitter"></i></a>
+            {% endif %}
+            {% if site.social.linkedin %}
+            <a href="https://linkedin.com/company/{{ site.social.linkedin }}"><i class="fab fa-linkedin"></i></a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

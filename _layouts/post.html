@@ -1,0 +1,130 @@
+---
+layout: default
+---
+
+<article class="post-article">
+  <div class="container">
+    <div class="post-header">
+      <div class="post-meta">
+        <span class="category">{{ page.category | default: 'Software Review' }}</span>
+        <span class="date">{{ page.date | date: "%B %d, %Y" }}</span>
+        <span class="read-time">{{ content | reading_time }} min read</span>
+      </div>
+      <h1 class="post-title">{{ page.title }}</h1>
+      {% if page.subtitle %}
+      <p class="post-subtitle">{{ page.subtitle }}</p>
+      {% endif %}
+      {% if page.rating %}
+      <div class="post-rating">
+        <span class="rating-label">Our Rating:</span>
+        <div class="rating-stars">
+          {% assign rating = page.rating | round %}
+          {% for i in (1..5) %}
+            {% if i <= rating %}
+              <i class="fas fa-star"></i>
+            {% else %}
+              <i class="far fa-star"></i>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <span class="rating-score">{{ page.rating }}/5</span>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if page.featured_image %}
+    <div class="post-featured-image">
+      <img src="{{ page.featured_image }}" alt="{{ page.title }}">
+    </div>
+    {% endif %}
+
+    <div class="post-content-wrapper">
+      <div class="post-content">
+        {{ content }}
+      </div>
+      
+      <div class="post-sidebar">
+        {% if page.pros or page.cons %}
+        <div class="pros-cons-box">
+          {% if page.pros %}
+          <div class="pros">
+            <h4><i class="fas fa-check-circle"></i> Pros</h4>
+            <ul>
+              {% for pro in page.pros %}
+              <li>{{ pro }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          {% if page.cons %}
+          <div class="cons">
+            <h4><i class="fas fa-times-circle"></i> Cons</h4>
+            <ul>
+              {% for con in page.cons %}
+              <li>{{ con }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        {% if page.pricing %}
+        <div class="pricing-box">
+          <h4><i class="fas fa-dollar-sign"></i> Pricing</h4>
+          {% for plan in page.pricing %}
+          <div class="pricing-tier">
+            <strong>{{ plan.name }}</strong>
+            <span class="price">{{ plan.price }}</span>
+            {% if plan.features %}
+            <ul class="features">
+              {% for feature in plan.features %}
+              <li>{{ feature }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if page.affiliate_link %}
+        <div class="cta-box">
+          <h4>Get Started Today</h4>
+          <a href="{{ page.affiliate_link }}" class="btn btn-primary btn-large" target="_blank" rel="nofollow">
+            Try {{ page.software_name | default: 'This Software' }} Free
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+          <small>* We may earn a commission from purchases made through our links</small>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="post-footer">
+      {% if page.tags %}
+      <div class="post-tags">
+        <span class="tags-label">Tags:</span>
+        {% for tag in page.tags %}
+        <a href="{{ '/tag/' | append: tag | slugify | append: '/' | relative_url }}" class="tag">#{{ tag }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="post-navigation">
+        {% if page.previous %}
+        <a href="{{ page.previous.url | relative_url }}" class="nav-previous">
+          <i class="fas fa-arrow-left"></i>
+          <span>{{ page.previous.title | truncatewords: 8 }}</span>
+        </a>
+        {% endif %}
+        {% if page.next %}
+        <a href="{{ page.next.url | relative_url }}" class="nav-next">
+          <span>{{ page.next.title | truncatewords: 8 }}</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</article>
